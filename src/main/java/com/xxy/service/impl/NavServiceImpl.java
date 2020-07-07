@@ -16,7 +16,13 @@ public class NavServiceImpl implements NavService {
     @Autowired
     private NavDao mapper;
 
-
+    /**
+    * @Description: TODO
+    * @author: 谢星宇
+    * @date: 2020/7/7 11:42
+    
+    * @Return: java.util.List<com.xxy.entity.model.Nav>
+    */
     @Override
     public List<Nav> iniNavMenu() {
         List<Nav> navs = mapper.selectAll();

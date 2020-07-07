@@ -1,0 +1,39 @@
+server:
+  port: 8181   #端口设置
+  servlet:
+    context-path: /erp  #项目名
+
+##thymeleaf配置
+spring:
+  thymeleaf:
+    cache: false   #关闭缓存
+    content-type: text/html  ##页面
+    enabled: true
+    encoding: UTF-8
+    mode: LEGACYHTML5
+    prefix: classpath:/templates/  ##模板所在的目录
+    suffix: .html    #模板的后缀
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/erp?characterEncoding=UTF8
+    password: root
+    username: root
+#打印sql语句,指定接口所在的包
+logging:
+  level:
+    cn.dao: debug
+
+#mybatis配置
+mybatis:
+  configuration:
+   map-underscore-to-camel-case: true  #配置驼峰命名转换 在进行sql查询和初始化实体时mybatis会为我们自动转化
+   log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   #mybatis 控制台打印sql
+  #实体类所在包名
+  type-aliases-package: com.xxy.entity.plan
+  mapper-locations: classpath*:static/xxy/mapper/*.xml
+#通用mapper配置
+mapper:
+  #公用接口类路径
+  mappers: com.xxy.baseDao.BaseDao
+  identity: MYSQL

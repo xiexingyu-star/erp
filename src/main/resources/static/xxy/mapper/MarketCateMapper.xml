@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxy.dao.MarketCategoryDao">
+
+    <select id="findMarketCate"  parameterType="com.xxy.entity.vo.MarketCateVo"
+             resultType="com.xxy.entity.plan.Category">
+    SELECT * FROM t_plan_category
+
+    <if test="start!=null and offset !=null">
+        limit #{start} , #{offset}
+    </if>
+</select>
+</mapper>
+

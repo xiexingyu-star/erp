@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxy.dao.MarketDao">
+
+    <resultMap type="com.xxy.entity.vo.MaketPlanCateVo" id="maketplan">
+        <id column="pid" property="pid"/>
+        <result column="assignee" property="assignee"/>
+        <result column="detail" property="detail"/>
+        <result column="ischeck" property="ischeck"/>
+        <result column="pname" property="pname"/>
+        <result column="number" property="number"/>
+        <result column="cname" property="cname"/>
+        <result column="cid" property="cid"/>
+    </resultMap>
+
+    <select id="findMaketPlanCateVo"  resultMap="maketplan">
+        SELECT p.id AS pid , p.assignee AS assignee ,
+        p.detail AS  detail ,p.ischeck AS ischeck ,
+        p.name AS pname , p.number AS number ,
+        p.typeid AS  ptypeid ,p.createtime as startTime,
+        p.endtime as endTime, c.id AS cid ,
+        c.name AS cname
+        FROM t_plan_market AS p ,
+        t_plan_category AS c
+        WHERE p.typeid = c.id
+
+        <if test="isCkeck!=null">
+            and p.ischeck = #{isCkeck}
+        </if>
+
+        <if test="category!=null">
+            and c.id = #{category}
+        </if>
+
+        <if test="nameLike!=null  ">
+            and p.name like concat('%',#{nameLike},'%')
+        </if>
+        <if test="startTime!=null and endTime!=null and startTime!='' and endTime!='' ">
+            AND p.createtime &gt;= CAST(#{startTime,jdbcType=VARCHAR} AS date)
+             and p.createtime &lt;= CAST(#{endTime,jdbcType=VARCHAR} AS date)
+        </if>
+        <if test="start!=null and offset !=null">
+            limit #{start} , #{offset}
+        </if>
+    </select>
+
+</mapper>
+

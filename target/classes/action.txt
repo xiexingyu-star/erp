@@ -1,0 +1,23 @@
+//市场计划init
+localhost:8181/erp/market/initMarket
+//市场计划数据读取
+localhost:8181/erp/market/getPlanMarket
+
+
+
+//sql string 转date
+CAST(#{dt,jdbcType=VARCHAR} AS date)
+
+//市场分类维护init
+localhost:8181/erp/marketcate/initMarketCate
+
+//市场预测页面
+localhost:8181/erp/MarketPredictions/initPredictions
+//添加市场预测
+/erp/MarketPredictions/addPredictions
+//预测
+localhost:8181/erp/MarketPredictions/predictions
+
+//查所有市场分类
+localhost:8181/erp/marketcate/findAll
+

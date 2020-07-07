@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>dTree的使用</title>
+  <link rel="stylesheet" href="layui/css/layui.css">
+  <link rel="stylesheet" href="layui_ext/dtree/dtree.css">
+  <link rel="stylesheet" href="layui_ext/dtree/font/dtreefont.css">
+  
+</head>
+<body>
+<h1>生产模块</h1>
+
+<div class="layui-container-fluid">
+	<div class="layui-col-md3">
+      	<!-- 创建树菜单 -->
+		<ul id="demoTree" class="dtree" data-id="0"></ul>
+    </div>
+    <div class="layui-col-md9">
+     	 数据表格<br>
+     	 <table class="layui-table">
+		  <colgroup>
+		    <col width="150">
+		    <col width="200">
+		    <col>
+		  </colgroup>
+		  <thead>
+		    <tr>
+		      <th>昵称</th>
+		      <th>加入时间</th>
+		      <th>签名</th>
+		    </tr> 
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <td>贤心</td>
+		      <td>2016-11-29</td>
+		      <td>人生就像是一场修行</td>
+		    </tr>
+		    <tr>
+		      <td>许闲心</td>
+		      <td>2016-11-28</td>
+		      <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+		    </tr>
+		  </tbody>
+		</table>
+    </div>
+
+</div> 
+
+
+ 
+<script src="layui/layui.all.js"></script>
+<!-- 不需要引入下面的内容 通过模块加载进来 -->
+<!-- <script src="layui_ext/dtree/dtree.js"></script> -->
+
+</body>
+</html>
+<script>
+	layui.extend({   //扩展layui自身的模块
+	    dtree: 'layui_ext/dtree/dtree'   //  dtree的路径
+	  }).use(['jquery','dtree','layer'],function(){
+	   //给变量赋值
+	    var $ = layui.jquery;
+	    var dtree = layui.dtree;
+	    var layer = layui.layer;
+	   
+	     // 初始化树
+	    var DemoTree = dtree.render({
+	      method:'GET' ,     //请求方式  405错误是请求方式不对
+	      initLevel:1 ,  //页面打开的时候不展开
+	      elem: "#demoTree",  // id选择器
+	      //data: demoTree, // 使用data加载
+	      url: "/layui01/renderdtree" // 数据文件
+	    });
+	   
+	   
+	   // 绑定节点点击事件
+	    dtree.on("node('demoTree')" ,function(obj){
+	       console.log(obj.param);
+	       layer.msg(JSON.stringify(obj.param.context));  //根据点击的节点名称发送ajax请求得到数据表格
+	    });
+	   
+	   
+	
+	});
+
+
+
+</script>

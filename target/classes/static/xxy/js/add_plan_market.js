@@ -68,7 +68,7 @@ layui.use(['form','laydate','jquery','table'], function(){
                 layout: ['limit', 'count', 'prev', 'page', 'next', 'skip']
                 , curr: 1
                 , groups: 5
-                , limit: 5
+                , limit: 10
             }
             , response: {
                 statusCode: 200 //规定成功的状态码，默认：0

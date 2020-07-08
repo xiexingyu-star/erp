@@ -29,10 +29,16 @@ public class MarketController {
     @Autowired
     private MarketService marketService;
 
-    /**
-     * localhost:8181/erp/market/initMarket
-     * @return
+    /** * @return
      */
+    /**
+    * @Description: TODO
+    * @author: 谢星宇
+    * @date: 2020/7/8 10:14
+     * localhost:8181/erp/market/initMarket
+     * 市场数据初始化
+     * @Return: java.lang.String
+    */
     @RequestMapping("initMarket")
     public String initMarket(){
         return "xxy/plan_market";
